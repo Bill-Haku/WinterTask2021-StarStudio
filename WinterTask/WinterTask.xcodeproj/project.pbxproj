@@ -10,6 +10,7 @@
 		BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3C425BE93FB00D83FC7 /* FileListView.swift */; };
 		BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */; };
 		BF65B3DA25BEFB9300D83FC7 /* TestList.json in Resources */ = {isa = PBXBuildFile; fileRef = BF65B3D925BEFB9300D83FC7 /* TestList.json */; };
+		BF65B3E525C00F1400D83FC7 /* MapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3E425C00F1400D83FC7 /* MapApp.swift */; };
 		BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */; };
 		BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4D25BC320600D20557 /* ContentView.swift */; };
 		BFF6DC5025BC320900D20557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF6DC4F25BC320900D20557 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		BF65B3C425BE93FB00D83FC7 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
 		BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserApp.swift; sourceTree = "<group>"; };
 		BF65B3D925BEFB9300D83FC7 /* TestList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestList.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		BF65B3E425C00F1400D83FC7 /* MapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapApp.swift; sourceTree = "<group>"; };
 		BFF6DC4825BC320600D20557 /* WinterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterTaskApp.swift; sourceTree = "<group>"; };
 		BFF6DC4D25BC320600D20557 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		BF65B3C225BE939A00D83FC7 /* MapBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				BF65B3E425C00F1400D83FC7 /* MapApp.swift */,
 				BFF6DC8825BC389C00D20557 /* MapView.swift */,
 			);
 			path = MapBrowser;
@@ -317,6 +320,7 @@
 				BFF6DC8925BC389C00D20557 /* MapView.swift in Sources */,
 				BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */,
 				BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */,
+				BF65B3E525C00F1400D83FC7 /* MapApp.swift in Sources */,
 				BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */,
 				BFF6DC7A25BC325B00D20557 /* FileManagementView.swift in Sources */,
 				BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */,
