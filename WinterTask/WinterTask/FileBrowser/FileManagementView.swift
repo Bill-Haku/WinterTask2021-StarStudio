@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct FileManagementView: View {
+    //var fileListArray = getAllFileName(folderPath: documentPath)
     var body: some View {
-        Text("File Management View")
+        return NavigationView {
+            /*    List
+            }*/
+        }
     }
 }
 

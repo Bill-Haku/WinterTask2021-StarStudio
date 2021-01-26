@@ -9,8 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    var latitudeIn: Float = 30.67
-    var longitudeIn: Float = 104.07
+    var latitudeIn: CGFloat = 30.67
+    var longitudeIn: CGFloat = 104.07
     @State var mapDelta = 0.1
     
     @State private var region = MKCoordinateRegion(
