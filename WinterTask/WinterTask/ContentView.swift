@@ -14,7 +14,7 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "folder")
                 }
-            WebBrowserView()
+            WebView()
                 .tabItem {
                     Image(systemName: "network")
                 }
