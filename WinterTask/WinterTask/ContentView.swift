@@ -13,18 +13,22 @@ struct ContentView: View {
             FileManagementView()
                 .tabItem {
                     Image(systemName: "folder")
+                    Text("Files")
                 }
             WebView()
                 .tabItem {
                     Image(systemName: "network")
+                    Text("Internet")
                 }
             MapView()
                 .tabItem {
                     Image(systemName: "map")
+                    Text("Map")
                 }
             UserInfoView()
                 .tabItem {
                     Image(systemName: "person")
+                    Text("User")
                 }
         }
     }

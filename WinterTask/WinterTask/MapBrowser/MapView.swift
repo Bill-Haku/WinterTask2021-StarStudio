@@ -9,12 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @State var latitudeIn: Double = 30.67
-    @State var longitudeIn: Double = 104.07
-    @State var latitudeStr: String = ""
-    @State var longtiudeStr: String = ""
-    @State var mapDelta = 0.1
-    
+    @State var latitudeStr: String = "30.67"
+    @State var longtiudeStr: String = "104.07"
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 30.67, longitude: 104.07),
         span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
@@ -56,7 +52,10 @@ struct MapView: View {
                             TextField("Longitude", text: $longtiudeStr)
                         }
                     }
-                    Button(action: {}, label: {
+                    Button(action: {
+                        region.center.latitude = Double(latitudeStr)!
+                        region.center.longitude = Double(longtiudeStr)!
+                    }, label: {
                         Text("Go").font(.title)
                     })
                 }
