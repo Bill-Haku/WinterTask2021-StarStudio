@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+class user: ObservableObject {
+    @Published var userName = "User Name"
+}
+
+var userInfo = user()
 
 @main
 struct WinterTaskApp: App {
