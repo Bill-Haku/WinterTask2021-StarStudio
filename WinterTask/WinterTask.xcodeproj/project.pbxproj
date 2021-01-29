@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF015E4325C15DAC005F4F0C /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF015E4225C15DAC005F4F0C /* MapKitView.swift */; };
 		BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3C425BE93FB00D83FC7 /* FileListView.swift */; };
 		BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */; };
 		BF65B3DA25BEFB9300D83FC7 /* TestList.json in Resources */ = {isa = PBXBuildFile; fileRef = BF65B3D925BEFB9300D83FC7 /* TestList.json */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF015E4225C15DAC005F4F0C /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		BF65B3C425BE93FB00D83FC7 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
 		BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserApp.swift; sourceTree = "<group>"; };
 		BF65B3D925BEFB9300D83FC7 /* TestList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestList.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF6DC8825BC389C00D20557 /* MapView.swift */,
+				BF015E4225C15DAC005F4F0C /* MapKitView.swift */,
 			);
 			path = MapBrowser;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				BF65B3FF25C03D7700D83FC7 /* WebView.swift in Sources */,
 				BFF6DC8925BC389C00D20557 /* MapView.swift in Sources */,
+				BF015E4325C15DAC005F4F0C /* MapKitView.swift in Sources */,
 				BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */,
 				BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */,
 				BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */,
