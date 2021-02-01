@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import WinterTask
+//@testable import WinterTask
 
 class WinterTaskTests: XCTestCase {
 

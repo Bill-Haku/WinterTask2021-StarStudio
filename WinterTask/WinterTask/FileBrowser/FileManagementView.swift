@@ -11,8 +11,9 @@ struct FileManagementView: View {
     //var fileListArray = getAllFileName(folderPath: documentPath)
     var body: some View {
         return NavigationView {
-            /*    List
-            }*/
+            List(fileListArray) {_ in
+                
+            }
         }
     }
 }

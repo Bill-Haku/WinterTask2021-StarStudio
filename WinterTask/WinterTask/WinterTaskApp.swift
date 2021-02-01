@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Foundation
+
 class user: ObservableObject {
     @Published var userName = "User Name"
 }
 
 var userInfo = user()
+
+func cleanCache() {
+    
+}
 
 @main
 struct WinterTaskApp: App {

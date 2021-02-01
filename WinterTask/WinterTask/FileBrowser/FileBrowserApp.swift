@@ -35,7 +35,7 @@ func getAllFileName(folderPath: String)->[String]{
     return array!
 }
 
-func deleteFile(folderPath: String, fileName: String)->Bool{
+func deleteFile(folderPath: String, fileName: String) -> Bool{
     var success = false
     let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
     let manager = FileManager.default
@@ -48,7 +48,7 @@ func deleteFile(folderPath: String, fileName: String)->Bool{
             success = true
         }
     }
-        return success
+    return success
 }
 
 func openICloudDrive(folderUrl : String, folderName : String) {
@@ -72,7 +72,41 @@ func openICloudDrive(folderUrl : String, folderName : String) {
     }
 }
 
-var fileListArray: [String] = [""]
+class fileType: Identifiable {
+    var name: String
+    var type: String
+    
+    init (name: String, type: String) {
+        self.name = name
+        self.type = type
+    }
+}
+var fileList0 = fileType(name: "", type: "")
+var newFileCLass = fileType(name: "", type: "")
+var fileListArray: [fileType] = [fileList0]
+
+extension String {
+    var `extension`: String {
+        if let index = self.lastIndex(of: ".") {
+            return String(self[index...])
+        } else {
+            return ""
+        }
+    }
+}
+
+func getFileList() {
+    guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
+    guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
+    while let file = fileEnumerator.nextObject() {
+        let fileStr = file as! String
+        let fileType = fileStr.extension
+        newFileCLass.name = fileStr
+        newFileCLass.type = fileType
+        print(file)
+        fileListArray.append(newFileCLass)
+    }
+}
 /*
 func getFileList(filePath: String) -> [String] {
        // 1.获取文件路径
