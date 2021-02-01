@@ -55,6 +55,10 @@ struct MapView: View {
                     Button(action: {
                         region.center.latitude = Double(latitudeStr)!
                         region.center.longitude = Double(longtiudeStr)!
+                        if region.span.latitudeDelta > 0.5 {
+                            region.span.latitudeDelta = 0.2
+                            region.span.longitudeDelta = 0.2
+                        }
                     }, label: {
                         Text("Go").font(.title)
                     })

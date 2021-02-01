@@ -15,6 +15,7 @@ struct FileListView: View {
                 .resizable()
                 .frame(width: 40, height: 40, alignment: .center)
             Text(file.name)
+                .font(.title2)
             Spacer()
         }
     }

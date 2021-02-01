@@ -75,7 +75,7 @@ struct PullRefresh: UIViewRepresentable {
         let isRefreshing: Binding<Bool>
         let action: (() -> Void)?
         private var stateToken: NSKeyValueObservation?
-        private var initOffset:CGFloat = 0
+        private var initOffset: CGFloat = 0
         
         init(_ isRefreshing: Binding<Bool>,action: (() -> Void)?) {
             self.isRefreshing = isRefreshing

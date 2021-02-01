@@ -81,9 +81,11 @@ class fileType: Identifiable {
         self.type = type
     }
 }
-var fileList0 = fileType(name: "", type: "")
+var fileList0 = fileType(name: "test1.docx", type: "docx")
+var fileList1 = fileType(name: "test2.pdf", type: "pdf")
+var fileList2 = fileType(name: "test3.xml", type: "xml")
 var newFileCLass = fileType(name: "", type: "")
-var fileListArray: [fileType] = [fileList0]
+var fileListArray: [fileType] = [fileList0, fileList1, fileList2]
 
 extension String {
     var `extension`: String {
