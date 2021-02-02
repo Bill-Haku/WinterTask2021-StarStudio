@@ -61,15 +61,13 @@ struct PullRefresh: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            guard let viewHost = uiView.superview?.superview else {
-                return
-            }
-            guard let scrollView = self.scrollView(root: viewHost) else {
-                return
-            }
+            guard let viewHost = uiView.superview?.superview else { return }
+            guard let scrollView = self.scrollView(root: viewHost) else { return }
             if let refreshControl = scrollView.refreshControl {
                 if self.isRefreshing {
                     refreshControl.beginRefreshing()
+                    getFileList()
+                    print("refreshing")
                 } else {
                     refreshControl.endRefreshing()
                 }

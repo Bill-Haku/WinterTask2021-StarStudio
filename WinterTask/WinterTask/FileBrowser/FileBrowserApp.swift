@@ -81,6 +81,7 @@ class fileType: Identifiable {
         self.type = type
     }
 }
+
 var fileList0 = fileType(name: "test1.docx", type: "docx")
 var fileList1 = fileType(name: "test2.pdf", type: "pdf")
 var fileList2 = fileType(name: "test3.xml", type: "xml")
@@ -101,9 +102,9 @@ func getFileList() {
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
     while let file = fileEnumerator.nextObject() {
-        let fileStr = file as! String
-        let fileType = fileStr.extension
-        newFileCLass.name = fileStr
+        let fileNameStr = (file as! NSString).lastPathComponent
+        let fileType = fileNameStr.extension
+        newFileCLass.name = fileNameStr
         newFileCLass.type = fileType
         print(file)
         fileListArray.append(newFileCLass)
