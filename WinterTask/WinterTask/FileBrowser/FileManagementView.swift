@@ -7,8 +7,32 @@
 
 import SwiftUI
 
+class ModelObject: ObservableObject {
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if isRefreshing {
+                //刷新发起网络请求
+                requestData()
+            }
+        }
+    }
+    
+    func requestData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.isRefreshing = false
+        }
+    }
+}
+
+extension View {
+    func addRefreshHeader(isRefreshing: Binding<Bool>,
+                          action: (() -> Void)? = nil) -> some View {
+        self.background(PullRefresh(isRefreshing:isRefreshing,action: action))
+      }
+}
+
 struct FileManagementView: View {
-    @State var isRefreshing: Bool = false
+    @ObservedObject var modelObject = ModelObject()
     //var fileListArray = getAllFileName(folderPath: documentPath)
     var body: some View {
         NavigationView {
@@ -17,11 +41,7 @@ struct FileManagementView: View {
             }
             .navigationBarTitle(Text("Files"), displayMode: .inline)
         }
-        .background(PullRefresh(isRefreshing: $isRefreshing, action: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        self.isRefreshing = false
-                    }
-                }))
+        .addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
     }
 }
 
@@ -75,7 +95,7 @@ struct PullRefresh: UIViewRepresentable {
         let isRefreshing: Binding<Bool>
         let action: (() -> Void)?
         private var stateToken: NSKeyValueObservation?
-        private var initOffset: CGFloat = 0
+        private var initOffset:CGFloat = 0
         
         init(_ isRefreshing: Binding<Bool>,action: (() -> Void)?) {
             self.isRefreshing = isRefreshing
