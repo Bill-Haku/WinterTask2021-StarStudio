@@ -27,7 +27,7 @@ struct UserInfoView: View {
                 }
                 Section(header: Text(" ")){
                     NavigationLink(destination: UserInfoDetail()) {
-                        Text("Update your infomation")
+                        Text("Edit your profile")
                     }
                     Button(action: {
                         

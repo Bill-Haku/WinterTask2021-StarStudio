@@ -82,10 +82,11 @@ class fileType: Identifiable {
     }
 }
 
-var fileList0 = fileType(name: "test1.docx", type: "docx")
-var fileList1 = fileType(name: "test2.pdf", type: "pdf")
-var fileList2 = fileType(name: "test3.xml", type: "xml")
+var fileList0 = fileType(name: "test1.docx", type: ".docx")
+var fileList1 = fileType(name: "test2.pdf", type: ".pdf")
+var fileList2 = fileType(name: "test3.xml", type: ".xml")
 var newFileCLass = fileType(name: "", type: "")
+var newArray = fileType(name: "", type: "")
 var fileListArray: [fileType] = [fileList0, fileList1, fileList2]
 
 extension String {
@@ -99,39 +100,23 @@ extension String {
 }
 
 func getFileList() {
+    var i = 0
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
     while let file = fileEnumerator.nextObject() {
-        let fileNameStr = (file as! NSString).lastPathComponent
-        let fileType = fileNameStr.extension
-        newFileCLass.name = fileNameStr
-        newFileCLass.type = fileType
-        print(file)
-        fileListArray.append(newFileCLass)
+        let fileNameURL = file as! NSURL
+        let fileNameStr = fileNameURL.lastPathComponent
+        let fileType = fileNameStr?.extension
+        //newFileCLass.name = fileNameStr ?? "Fail"
+        //newFileCLass.type = fileType ?? "Fail"
+        //print(file)
+        //print(newFileCLass.name)
+        //print(newFileCLass.type)
+        fileListArray.append(newArray)
+        fileListArray[i].name = fileNameStr ?? "Fail"
+        fileListArray[i].type = fileType ?? "Fail"
+        print(fileListArray[i].name)
+        print(i)
+        i += 1
     }
 }
-/*
-func getFileList(filePath: String) -> [String] {
-       // 1.获取文件路径
-    let path = Bundle.main.path(forResource: "TestList.json", ofType: nil)
-    // 2.通过文件路径创建NSData
-    if let jsonPath = path {
-        let jsonData = NSData(contentsOfFile: jsonPath)
-            
-        // 带throws的方法需要抛异常
-        do {
-            // 3.序列化 data -> array
-            let dictArr = try JSONSerialization.jsonObject(with: jsonData! as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
-            // 4.遍历数组
-            // 在Swift中遍历数组，必须明确数据的类型 [[String: String]]表示字典里键值都是字符串 [[String]]表示数组里都是字符串
-            for dict in dictArr as! [[String: String]] {
-               //return dict
-                print(dict)
-            }
-        }
-        catch {
-                    // 异常代码放在这
-            print(error)
-        }
-    }
-}*/

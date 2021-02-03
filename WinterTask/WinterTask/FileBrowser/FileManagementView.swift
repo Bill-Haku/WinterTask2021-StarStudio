@@ -36,8 +36,9 @@ struct FileManagementView: View {
     //var fileListArray = getAllFileName(folderPath: documentPath)
     var body: some View {
         NavigationView {
-            List(fileListArray) { file in
-                FileListView(file: file)
+            List(fileListArray.indices, id: \.self) { index in
+                FileListView(file: fileListArray[index], id: index)
+                    .frame(height: 80)
             }
             .navigationBarTitle(Text("Files"), displayMode: .inline)
         }
@@ -66,8 +67,13 @@ struct PullRefresh: UIViewRepresentable {
             if let refreshControl = scrollView.refreshControl {
                 if self.isRefreshing {
                     refreshControl.beginRefreshing()
+                    fileListArray.removeAll()
                     getFileList()
                     print("refreshing")
+                    print(fileListArray[0].name)
+                    print(fileListArray[1].name)
+                    print(fileListArray[2].name)
+                    print(fileListArray[3].name)
                 } else {
                     refreshControl.endRefreshing()
                 }
