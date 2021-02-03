@@ -85,8 +85,6 @@ class fileType: Identifiable {
 var fileList0 = fileType(name: "test1.docx", type: ".docx")
 var fileList1 = fileType(name: "test2.pdf", type: ".pdf")
 var fileList2 = fileType(name: "test3.xml", type: ".xml")
-var newFileCLass = fileType(name: "", type: "")
-var newArray = fileType(name: "", type: "")
 var fileListArray: [fileType] = [fileList0, fileList1, fileList2]
 
 extension String {
@@ -100,23 +98,25 @@ extension String {
 }
 
 func getFileList() {
-    var i = 0
+    //var i = 0
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
     while let file = fileEnumerator.nextObject() {
+        let newFileCLass = fileType(name: "", type: "")
         let fileNameURL = file as! NSURL
         let fileNameStr = fileNameURL.lastPathComponent
         let fileType = fileNameStr?.extension
-        //newFileCLass.name = fileNameStr ?? "Fail"
-        //newFileCLass.type = fileType ?? "Fail"
-        //print(file)
-        //print(newFileCLass.name)
-        //print(newFileCLass.type)
-        fileListArray.append(newArray)
+        newFileCLass.name = fileNameStr ?? "Fail"
+        newFileCLass.type = fileType ?? "Fail"
+        print(file)
+        print(newFileCLass.name)
+        print(newFileCLass.type)
+        fileListArray.append(newFileCLass)
+        /*fileListArray.append(newArray)
         fileListArray[i].name = fileNameStr ?? "Fail"
         fileListArray[i].type = fileType ?? "Fail"
         print(fileListArray[i].name)
         print(i)
-        i += 1
+        i += 1*/
     }
 }
