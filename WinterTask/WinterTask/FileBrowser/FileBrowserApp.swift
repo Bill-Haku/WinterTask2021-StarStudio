@@ -75,17 +75,28 @@ func openICloudDrive(folderUrl : String, folderName : String) {
 class fileType: Identifiable {
     var name: String
     var type: String
-    
-    init (name: String, type: String) {
+    var fileType: Int
+    var readable: Bool
+    /*
+     fileType 1: photos
+     fileType 2: documents
+     fileType 3: pdf
+     fileType 4: others
+     */
+    init (name: String, type: String, fileType: Int, readable: Bool) {
         self.name = name
         self.type = type
+        self.fileType = fileType
+        self.readable = readable
     }
 }
 
-var fileList0 = fileType(name: "test1.docx", type: ".docx")
-var fileList1 = fileType(name: "test2.pdf", type: ".pdf")
-var fileList2 = fileType(name: "test3.xml", type: ".xml")
-var fileListArray: [fileType] = [fileList0, fileList1, fileList2]
+var fileList0 = fileType(name: "test1.docx", type: ".docx", fileType: 2, readable: true)
+var fileList1 = fileType(name: "test2.pdf", type: ".pdf", fileType: 3, readable: true)
+var fileList2 = fileType(name: "test3.xml", type: ".xml", fileType: 4, readable: false)
+var fileListEmpty = fileType(name: "", type: "",fileType: 4, readable: false)
+var fileListArray: [fileType] = [fileListEmpty]
+var fileListArrayTest: [fileType] = [fileList0, fileList1, fileList2]
 
 extension String {
     var `extension`: String {
@@ -98,25 +109,34 @@ extension String {
 }
 
 func getFileList() {
-    //var i = 0
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
     while let file = fileEnumerator.nextObject() {
-        let newFileCLass = fileType(name: "", type: "")
+        let newFileCLass = fileType(name: "", type: "",fileType: 4,readable: false)
         let fileNameURL = file as! NSURL
         let fileNameStr = fileNameURL.lastPathComponent
         let fileType = fileNameStr?.extension
         newFileCLass.name = fileNameStr ?? "Fail"
         newFileCLass.type = fileType ?? "Fail"
+        if ((newFileCLass.type == ".jpg") || (newFileCLass.type == ".png") || (newFileCLass.type == ".JPG") || (newFileCLass.type == ".PNG")) {
+            newFileCLass.fileType = 1
+            newFileCLass.readable = true
+        }
+        else if ((newFileCLass.type == ".docx") || (newFileCLass.type == ".doc")) {
+            newFileCLass.fileType = 2
+            newFileCLass.readable = true
+        }
+        else if newFileCLass.type == ".pdf" {
+            newFileCLass.fileType = 3
+            newFileCLass.readable = true
+        }
+        else {
+            newFileCLass.fileType = 4
+            newFileCLass.readable = false
+        }
         print(file)
         print(newFileCLass.name)
         print(newFileCLass.type)
         fileListArray.append(newFileCLass)
-        /*fileListArray.append(newArray)
-        fileListArray[i].name = fileNameStr ?? "Fail"
-        fileListArray[i].type = fileType ?? "Fail"
-        print(fileListArray[i].name)
-        print(i)
-        i += 1*/
     }
 }

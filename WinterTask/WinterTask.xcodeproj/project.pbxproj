@@ -32,9 +32,9 @@
 		BF015E4325C15DAC005F4F0C /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF015E4225C15DAC005F4F0C /* MapKitView.swift */; };
 		BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3C425BE93FB00D83FC7 /* FileListView.swift */; };
 		BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */; };
-		BF65B3DA25BEFB9300D83FC7 /* TestList.json in Resources */ = {isa = PBXBuildFile; fileRef = BF65B3D925BEFB9300D83FC7 /* TestList.json */; };
 		BF65B3FF25C03D7700D83FC7 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3FE25C03D7700D83FC7 /* WebView.swift */; };
 		BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */; };
+		BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C278225CAF85D004C45B3 /* FileImageReader.swift */; };
 		BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */; };
 		BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4D25BC320600D20557 /* ContentView.swift */; };
 		BFF6DC5025BC320900D20557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF6DC4F25BC320900D20557 /* Assets.xcassets */; };
@@ -89,9 +89,9 @@
 		BF015E4225C15DAC005F4F0C /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		BF65B3C425BE93FB00D83FC7 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
 		BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserApp.swift; sourceTree = "<group>"; };
-		BF65B3D925BEFB9300D83FC7 /* TestList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestList.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		BF65B3FE25C03D7700D83FC7 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWKWebView.swift; sourceTree = "<group>"; };
+		BF8C278225CAF85D004C45B3 /* FileImageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImageReader.swift; sourceTree = "<group>"; };
 		BFF6DC4825BC320600D20557 /* WinterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterTaskApp.swift; sourceTree = "<group>"; };
 		BFF6DC4D25BC320600D20557 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 				BF65B3D125BE9CB800D83FC7 /* FileBrowserApp.swift */,
 				BFF6DC7925BC325B00D20557 /* FileManagementView.swift */,
 				BF65B3C425BE93FB00D83FC7 /* FileListView.swift */,
-				BF65B3D925BEFB9300D83FC7 /* TestList.json */,
+				BF8C278225CAF85D004C45B3 /* FileImageReader.swift */,
 			);
 			path = FileBrowser;
 			sourceTree = "<group>";
@@ -395,7 +395,6 @@
 				BF00C46925C80BCF00AABB6D /* HTML.png in Resources */,
 				BF00C47525C80BCF00AABB6D /* MP3.png in Resources */,
 				BF00C46C25C80BCF00AABB6D /* ZIP.png in Resources */,
-				BF65B3DA25BEFB9300D83FC7 /* TestList.json in Resources */,
 				BF00C43825C413A700AABB6D /* GirlInside.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +428,7 @@
 				BF65B3C525BE93FB00D83FC7 /* FileListView.swift in Sources */,
 				BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */,
 				BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */,
+				BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */,
 				BF00C48E25CA4EEA00AABB6D /* UserSetName.swift in Sources */,
 				BFF6DC7A25BC325B00D20557 /* FileManagementView.swift in Sources */,
 				BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */,

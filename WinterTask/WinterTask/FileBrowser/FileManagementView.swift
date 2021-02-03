@@ -11,7 +11,6 @@ class ModelObject: ObservableObject {
     @Published var isRefreshing: Bool = false {
         didSet {
             if isRefreshing {
-                //刷新发起网络请求
                 requestData()
             }
         }
@@ -33,12 +32,20 @@ extension View {
 
 struct FileManagementView: View {
     @ObservedObject var modelObject = ModelObject()
-    //var fileListArray = getAllFileName(folderPath: documentPath)
     var body: some View {
         NavigationView {
             List(fileListArray.indices, id: \.self) { index in
-                FileListView(file: fileListArray[index], id: index)
-                    .frame(height: 80)
+                if fileListArray[index].fileType == 1 {
+                    NavigationLink(
+                        destination: FileImageReader()) {
+                        FileListView(file: fileListArray[index], id: index)
+                            .frame(height: 80)
+                    }
+                }
+                else {
+                    FileListView(file: fileListArray[index], id: index)
+                        .frame(height: 80)
+                }
             }
             .navigationBarTitle(Text("Files"), displayMode: .inline)
         }
@@ -70,20 +77,14 @@ struct PullRefresh: UIViewRepresentable {
                     fileListArray.removeAll()
                     getFileList()
                     print("refreshing")
-                    print(fileListArray[0].name)
-                    print(fileListArray[1].name)
-                    print(fileListArray[2].name)
-                    print(fileListArray[3].name)
                 } else {
                     refreshControl.endRefreshing()
                 }
-                
             }else {
                 let refreshControl = UIRefreshControl()
                 scrollView.refreshControl = refreshControl
                 context.coordinator.setupObserver(scrollView)
             }
-            
         }
     }
     
