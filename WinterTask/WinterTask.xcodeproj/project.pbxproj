@@ -35,6 +35,7 @@
 		BF65B3FF25C03D7700D83FC7 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B3FE25C03D7700D83FC7 /* WebView.swift */; };
 		BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */; };
 		BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C278225CAF85D004C45B3 /* FileImageReader.swift */; };
+		BF8C279425CBD767004C45B3 /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C279325CBD767004C45B3 /* PDFReader.swift */; };
 		BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */; };
 		BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4D25BC320600D20557 /* ContentView.swift */; };
 		BFF6DC5025BC320900D20557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF6DC4F25BC320900D20557 /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		BF65B3FE25C03D7700D83FC7 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWKWebView.swift; sourceTree = "<group>"; };
 		BF8C278225CAF85D004C45B3 /* FileImageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImageReader.swift; sourceTree = "<group>"; };
+		BF8C279325CBD767004C45B3 /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
 		BFF6DC4825BC320600D20557 /* WinterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterTaskApp.swift; sourceTree = "<group>"; };
 		BFF6DC4D25BC320600D20557 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				BFF6DC7925BC325B00D20557 /* FileManagementView.swift */,
 				BF65B3C425BE93FB00D83FC7 /* FileListView.swift */,
 				BF8C278225CAF85D004C45B3 /* FileImageReader.swift */,
+				BF8C279325CBD767004C45B3 /* PDFReader.swift */,
 			);
 			path = FileBrowser;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */,
 				BF65B3D225BE9CB800D83FC7 /* FileBrowserApp.swift in Sources */,
 				BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */,
+				BF8C279425CBD767004C45B3 /* PDFReader.swift in Sources */,
 				BF00C48E25CA4EEA00AABB6D /* UserSetName.swift in Sources */,
 				BFF6DC7A25BC325B00D20557 /* FileManagementView.swift in Sources */,
 				BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */,
