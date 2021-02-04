@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct FileImageReader: View {
+    var file: fileType
+    @State private var remoteImage : UIImage? = nil
+    let placeholderOne = UIImage(named: "GirlInside")
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(uiImage: self.remoteImage ?? placeholderOne!)
+            .onAppear(perform: fetchRemoteImage)
+            .navigationBarTitle(Text(file.name))
+    }
+    
+    func fetchRemoteImage() {
+        guard let url = URL(string: file.url.absoluteString) else { return }
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            if let image = UIImage(data: data!){
+                self.remoteImage = image
+            }
+            else{
+                print(error ?? "")
+            }
+        }.resume()
     }
 }
 
 struct FileImageReader_Previews: PreviewProvider {
     static var previews: some View {
-        FileImageReader()
+        FileImageReader(file: testFile)
     }
 }

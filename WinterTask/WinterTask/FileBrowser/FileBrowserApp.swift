@@ -83,20 +83,24 @@ class fileType: Identifiable {
      fileType 3: pdf
      fileType 4: others
      */
-    init (name: String, type: String, fileType: Int, readable: Bool) {
+    var url: URL
+    init (name: String, type: String, fileType: Int, readable: Bool, url: URL) {
         self.name = name
         self.type = type
         self.fileType = fileType
         self.readable = readable
+        self.url = url
     }
 }
 
-var fileList0 = fileType(name: "test1.docx", type: ".docx", fileType: 2, readable: true)
+let emptyPath: String = String(format: "file///")
+let emptyURL: URL = URL(string: emptyPath)!
+/*var fileList0 = fileType(name: "test1.docx", type: ".docx", fileType: 2, readable: true)
 var fileList1 = fileType(name: "test2.pdf", type: ".pdf", fileType: 3, readable: true)
-var fileList2 = fileType(name: "test3.xml", type: ".xml", fileType: 4, readable: false)
-var fileListEmpty = fileType(name: "", type: "",fileType: 4, readable: false)
+var fileList2 = fileType(name: "test3.xml", type: ".xml", fileType: 4, readable: false)*/
+var fileListEmpty = fileType(name: "", type: "",fileType: 4, readable: false, url: emptyURL)
 var fileListArray: [fileType] = [fileListEmpty]
-var fileListArrayTest: [fileType] = [fileList0, fileList1, fileList2]
+//var fileListArrayTest: [fileType] = [fileList0, fileList1, fileList2]
 
 extension String {
     var `extension`: String {
@@ -112,12 +116,13 @@ func getFileList() {
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
     while let file = fileEnumerator.nextObject() {
-        let newFileCLass = fileType(name: "", type: "",fileType: 4,readable: false)
+        let newFileCLass = fileType(name: "", type: "",fileType: 4,readable: false, url: file as! URL)
         let fileNameURL = file as! NSURL
         let fileNameStr = fileNameURL.lastPathComponent
         let fileType = fileNameStr?.extension
         newFileCLass.name = fileNameStr ?? "Fail"
         newFileCLass.type = fileType ?? "Fail"
+        newFileCLass.url = fileNameURL as URL
         if ((newFileCLass.type == ".jpg") || (newFileCLass.type == ".png") || (newFileCLass.type == ".JPG") || (newFileCLass.type == ".PNG")) {
             newFileCLass.fileType = 1
             newFileCLass.readable = true

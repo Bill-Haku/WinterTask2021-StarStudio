@@ -17,7 +17,7 @@ class ModelObject: ObservableObject {
     }
     
     func requestData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.isRefreshing = false
         }
     }
@@ -37,7 +37,7 @@ struct FileManagementView: View {
             List(fileListArray.indices, id: \.self) { index in
                 if fileListArray[index].fileType == 1 {
                     NavigationLink(
-                        destination: FileImageReader()) {
+                        destination: FileImageReader(file: fileListArray[index])) {
                         FileListView(file: fileListArray[index], id: index)
                             .frame(height: 80)
                     }
