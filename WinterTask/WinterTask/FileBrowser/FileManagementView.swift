@@ -32,31 +32,39 @@ extension View {
 
 struct FileManagementView: View {
     @ObservedObject var modelObject = ModelObject()
+    
     var body: some View {
-        NavigationView {
-            List(fileListArray.indices, id: \.self) { index in
-                if fileListArray[index].fileType == 1 {
-                    NavigationLink(
-                        destination: FileImageReader(file: fileListArray[index])) {
-                        FileListView(file: fileListArray[index], id: index)
-                            .frame(height: 80)
-                    }
-                }
-                else if fileListArray[index].fileType == 3 {
-                    NavigationLink(
-                        destination: PDFReader(file: fileListArray [index])) {
-                        FileListView(file: fileListArray[index], id: index)
-                            .frame(height: 80)
-                    }
-                }
-                else {
-                    FileListView(file: fileListArray[index], id: index)
-                        .frame(height: 80)
-                }
-            }
-            .navigationBarTitle(Text("Files"), displayMode: .inline)
+        func deleteRaw(at offsets: IndexSet) {
+            fileListArray.remove(atOffsets: offsets)
         }
-        .addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
+        
+        return NavigationView {
+            List {
+                ForEach(fileListArray.indices, id: \.self) { index in
+                    if fileListArray[index].fileType == 1 {
+                        NavigationLink(
+                            destination: FileImageReader(file: fileListArray[index])) {
+                            FileListView(file: fileListArray[index], id: index)
+                                .frame(height: 80)
+                        }
+                    }
+                    else if fileListArray[index].fileType == 3 {
+                        NavigationLink(
+                            destination: PDFReader(file: fileListArray [index])) {
+                            FileListView(file: fileListArray[index], id: index)
+                                .frame(height: 80)
+                        }
+                    }
+                    else {
+                        FileListView(file: fileListArray[index], id: index)
+                            .frame(height: 80)
+                    }
+                }
+                .onDelete(perform: deleteRaw)
+                .navigationBarTitle(Text("Files"), displayMode: .inline)
+                
+            }
+        }.addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
     }
 }
 
