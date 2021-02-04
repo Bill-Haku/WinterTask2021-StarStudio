@@ -24,13 +24,14 @@ struct UserInfoView: View {
                         Text(usr.userName)
                             .font(.title)
                     }
+                    .frame(height: 90)
                 }
                 Section(header: Text(" ")){
                     NavigationLink(destination: UserInfoDetail()) {
                         Text("Edit your profile")
                     }
                     Button(action: {
-                        
+                        cleanCache()
                     }, label: {
                         Text("Clean cache")
                     })

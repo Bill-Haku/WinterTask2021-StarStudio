@@ -42,6 +42,13 @@ struct FileManagementView: View {
                             .frame(height: 80)
                     }
                 }
+                else if fileListArray[index].fileType == 3 {
+                    NavigationLink(
+                        destination: PDFReader(file: fileListArray [index])) {
+                        FileListView(file: fileListArray[index], id: index)
+                            .frame(height: 80)
+                    }
+                }
                 else {
                     FileListView(file: fileListArray[index], id: index)
                         .frame(height: 80)
