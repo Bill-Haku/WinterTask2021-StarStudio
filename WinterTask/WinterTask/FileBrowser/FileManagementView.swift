@@ -24,18 +24,23 @@ class ModelObject: ObservableObject {
 }
 
 extension View {
-    func addRefreshHeader(isRefreshing: Binding<Bool>,
-                          action: (() -> Void)? = nil) -> some View {
+    func addRefreshHeader(isRefreshing: Binding<Bool>, action: (() -> Void)? = nil) -> some View {
         self.background(PullRefresh(isRefreshing:isRefreshing,action: action))
       }
 }
 
 struct FileManagementView: View {
     @ObservedObject var modelObject = ModelObject()
+    @State var showAlert = false
+    @State var folderNameIn = ""
     
     var body: some View {
         func deleteRaw(at offsets: IndexSet) {
-            fileListArray.remove(atOffsets: offsets)
+            if let first = offsets.first {
+                try! fileManager.removeItem(at: fileListArray[first].url)
+                fileListArray.remove(atOffsets: offsets)
+                refreshFileList()
+            }
         }
         
         return NavigationView {
@@ -61,10 +66,23 @@ struct FileManagementView: View {
                     }
                 }
                 .onDelete(perform: deleteRaw)
-                .navigationBarTitle(Text("Files"), displayMode: .inline)
                 
+                .navigationBarTitle(Text("Files"), displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: {
+                    withAnimation {
+                        self.showAlert.toggle()
+                    }
+                }, label: {
+                    Image(systemName: "folder.badge.plus")
+                }))
             }
-        }.addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
+        }
+        .addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
+        .alert(isPresented: $showAlert, TextAlert(title: "Add New Folder", placeholder: "New folder", action: {
+            if let name = $0 {
+                self.folderNameIn = name
+            }
+        }))
     }
 }
 
@@ -89,9 +107,7 @@ struct PullRefresh: UIViewRepresentable {
             if let refreshControl = scrollView.refreshControl {
                 if self.isRefreshing {
                     refreshControl.beginRefreshing()
-                    fileListArray.removeAll()
-                    getFileList()
-                    print("refreshing")
+                    refreshFileList()
                 } else {
                     refreshControl.endRefreshing()
                 }

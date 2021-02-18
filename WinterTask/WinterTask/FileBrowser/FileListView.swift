@@ -38,7 +38,15 @@ struct FileListView: View {
             Spacer()
             if file.name != "" {
                 Button(action: {
-                    
+                    /*var indexPath: NSIndexPath
+                    let document = UIDocumentInteractionController(url: file.url)
+                    let rect = self.tableView.rectForRowAtIndexPath(indexPath)
+                    document.presentOpenInMenuFromRect(rect, inView: self.tableView, animated: true)*/
+                    //let document = UIDocumentInteractionController(url: file.url)
+                    //document.presentOpenInMenu(from: Button(), animated: true)
+                    //let url = file.url
+                    //let documentController = UIDocumentInteractionController(url: url)
+                    //documentController?.presentOptionsMenu(from: self.body.bounds, in: self.body, animated: true)
                 }, label: {
                     Image(systemName: "info.circle")
                         .resizable()

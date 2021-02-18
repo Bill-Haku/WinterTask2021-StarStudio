@@ -10,7 +10,6 @@ import PDFKit
 
 struct PDFReader: View {
     var file: fileType
-    var myPDF = PDFDocument()
     var body: some View {
         PDFKitRepresentedView(file.url)
             .navigationBarTitle(Text(file.name))
