@@ -36,6 +36,7 @@
 		BF65B40C25C05EF400D83FC7 /* SwiftUIWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */; };
 		BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C278225CAF85D004C45B3 /* FileImageReader.swift */; };
 		BF8C279425CBD767004C45B3 /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C279325CBD767004C45B3 /* PDFReader.swift */; };
+		BF938EEF25DF5F5600116FB8 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = BF938EEE25DF5F5600116FB8 /* folder.png */; };
 		BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */; };
 		BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4D25BC320600D20557 /* ContentView.swift */; };
 		BFF6DC5025BC320900D20557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF6DC4F25BC320900D20557 /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		BF65B40B25C05EF400D83FC7 /* SwiftUIWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWKWebView.swift; sourceTree = "<group>"; };
 		BF8C278225CAF85D004C45B3 /* FileImageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImageReader.swift; sourceTree = "<group>"; };
 		BF8C279325CBD767004C45B3 /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
+		BF938EEE25DF5F5600116FB8 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		BFF6DC4825BC320600D20557 /* WinterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterTaskApp.swift; sourceTree = "<group>"; };
 		BFF6DC4D25BC320600D20557 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		BF00C45625C80BB400AABB6D /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				BF938EEE25DF5F5600116FB8 /* folder.png */,
 				BF00C45E25C80BCD00AABB6D /* 7z.png */,
 				BF00C46725C80BCE00AABB6D /* AI.png */,
 				BF00C46025C80BCD00AABB6D /* BAT.png */,
@@ -380,6 +383,7 @@
 				BF00C47325C80BCF00AABB6D /* PDF.png in Resources */,
 				BF00C46E25C80BCF00AABB6D /* MD.png in Resources */,
 				BF00C47825C80BCF00AABB6D /* XLSX.png in Resources */,
+				BF938EEF25DF5F5600116FB8 /* folder.png in Resources */,
 				BF00C47125C80BCF00AABB6D /* PPT.png in Resources */,
 				BF00C46D25C80BCF00AABB6D /* CSS.png in Resources */,
 				BF00C46B25C80BCF00AABB6D /* XML.png in Resources */,

@@ -15,48 +15,44 @@ var libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDo
 var cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
 var tmpPath = NSTemporaryDirectory()
 
-var fileManager = FileManager.default
+let emptyPath: String = String(format: "file///")
+let emptyURL: URL = URL(string: emptyPath)!
+var fileListEmpty = fileType(name: "", type: "",fileType: 4, readable: false, url: emptyURL)
+var fileListArray: [fileType] = [fileListEmpty]
 
-func createFolderIfNotExisits(folderPath : String)->Bool {
-    let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString    //get sandbox path
-    let fileManager = FileManager.default
-    let filePath = documentPath as String + "/" + folderPath
-    let exist = fileManager.fileExists(atPath: filePath)
-    if !exist {
-        try! fileManager.createDirectory(atPath: filePath,withIntermediateDirectories: true, attributes: nil)
+// MARK: - State the file class
+class fileType: Identifiable {
+    var name: String
+    var type: String
+    var fileType: Int
+    var readable: Bool
+    /*
+     fileTyoe 0: folders
+     fileType 1: photos
+     fileType 2: documents
+     fileType 3: pdf
+     fileType 4: others
+     */
+    var url: URL
+    init (name: String, type: String, fileType: Int, readable: Bool, url: URL) {
+        self.name = name
+        self.type = type
+        self.fileType = fileType
+        self.readable = readable
+        self.url = url
     }
-    return exist
 }
 
-func createNewFolder(folderName: String) {
+// MARK: - Create New Folder
+func createNewFolder(folderName: String) -> Bool{
     let fileManager = FileManager.default
-    let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-    
-}
-
-func getAllFileName(folderPath: String)->[String]{
-    let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
-    let manager = FileManager.default
-    let fileUrl = documentPath as String + "/" + folderPath
-    let subPaths = manager.subpaths(atPath: fileUrl)
-    let array = subPaths?.filter({$0 != ".DS_Store"})
-    return array!
-}
-
-func deleteFile(folderPath: String, fileName: String) -> Bool{
-    var success = false
-    let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
-    let manager = FileManager.default
-    let fileUrl = documentPath as String + "/" + folderPath
-    let subPaths = manager.subpaths(atPath: fileUrl)
-    let removePath = fileUrl + "/" + fileName
-    for fileStr in subPaths!{
-        if fileName == fileStr {
-            try! manager.removeItem(atPath: removePath)
-            success = true
-        }
+    let documentsDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+    let filePath = documentsDirectory as String + "/" + folderName
+    let isExist = fileManager.fileExists(atPath: filePath)
+    if !isExist {
+        try! fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
     }
-    return success
+    return isExist
 }
 
 func openICloudDrive(folderUrl : String, folderName : String) {
@@ -80,36 +76,7 @@ func openICloudDrive(folderUrl : String, folderName : String) {
     }
 }
 
-class fileType: Identifiable {
-    var name: String
-    var type: String
-    var fileType: Int
-    var readable: Bool
-    /*
-     fileType 1: photos
-     fileType 2: documents
-     fileType 3: pdf
-     fileType 4: others
-     */
-    var url: URL
-    init (name: String, type: String, fileType: Int, readable: Bool, url: URL) {
-        self.name = name
-        self.type = type
-        self.fileType = fileType
-        self.readable = readable
-        self.url = url
-    }
-}
-
-let emptyPath: String = String(format: "file///")
-let emptyURL: URL = URL(string: emptyPath)!
-/*var fileList0 = fileType(name: "test1.docx", type: ".docx", fileType: 2, readable: true)
-var fileList1 = fileType(name: "test2.pdf", type: ".pdf", fileType: 3, readable: true)
-var fileList2 = fileType(name: "test3.xml", type: ".xml", fileType: 4, readable: false)*/
-var fileListEmpty = fileType(name: "", type: "",fileType: 4, readable: false, url: emptyURL)
-var fileListArray: [fileType] = [fileListEmpty]
-//var fileListArrayTest: [fileType] = [fileList0, fileList1, fileList2]
-
+// MARK: - Get the extension
 extension String {
     var `extension`: String {
         if let index = self.lastIndex(of: ".") {
@@ -120,6 +87,7 @@ extension String {
     }
 }
 
+//MARK: - Get File List
 func getFileList() {
     guard let documentsDirectory =  try? FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return }
     guard let fileEnumerator = FileManager.default.enumerator(at: documentsDirectory, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions()) else { return }
@@ -131,7 +99,11 @@ func getFileList() {
         newFileCLass.name = fileNameStr ?? "Fail"
         newFileCLass.type = fileType ?? "Fail"
         newFileCLass.url = fileNameURL as URL
-        if ((newFileCLass.type == ".jpg") || (newFileCLass.type == ".png") || (newFileCLass.type == ".JPG") || (newFileCLass.type == ".PNG")) {
+        if newFileCLass.type == "" {
+            newFileCLass.fileType = 0
+            newFileCLass.readable = false
+        }
+        else if ((newFileCLass.type == ".jpg") || (newFileCLass.type == ".png") || (newFileCLass.type == ".JPG") || (newFileCLass.type == ".PNG")) {
             newFileCLass.fileType = 1
             newFileCLass.readable = true
         }
@@ -159,7 +131,7 @@ func refreshFileList() {
     print("refreshing")
 }
 
-// MARK: - 其他app分享过来时回调
+// MARK: - When Shared from other Apps
 func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
   print("openURLContexts:\(URLContexts)")
     // 获取 Document/Inbox 里从其他app分享过来的文件

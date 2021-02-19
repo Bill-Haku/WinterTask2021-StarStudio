@@ -33,6 +33,7 @@ struct FileManagementView: View {
     @ObservedObject var modelObject = ModelObject()
     @State var showAlert = false
     @State var folderNameIn = ""
+    let fileManager = FileManager.default
     
     var body: some View {
         func deleteRaw(at offsets: IndexSet) {
@@ -81,6 +82,12 @@ struct FileManagementView: View {
         .alert(isPresented: $showAlert, TextAlert(title: "Add New Folder", placeholder: "New folder", action: {
             if let name = $0 {
                 self.folderNameIn = name
+                if createNewFolder(folderName: folderNameIn) {
+                    print("create folder \(name) success")
+                }
+                else {
+                    print("create folder \(name) fail")
+                }
             }
         }))
     }

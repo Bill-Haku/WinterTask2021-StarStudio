@@ -14,7 +14,12 @@ struct FileListView: View {
     let placeholderOne = UIImage(named: "GirlInside")
     var body: some View {
         HStack {
-            if ((file.fileType == 2) || (file.fileType == 3)) {
+            if file.fileType == 0 {
+                Image("icon.folder")
+                    .resizable()
+                    .frame(width: 50, height: 40, alignment: .center)
+            }
+            else if ((file.fileType == 2) || (file.fileType == 3)) {
                 Image("icon\(file.type)")
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)

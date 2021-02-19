@@ -9,10 +9,14 @@ import SwiftUI
 
 struct UserInfoDetail: View {
     @ObservedObject var userNameIn = userInfo
+    @State var showImagePicker = false
+    @State var image: Image? = nil
+    
     var body: some View {
         List {
             HStack {
                 Text("Profile Photo")
+                    .font(.title2)
                 Spacer()
                 Image("GirlInside")
                     .resizable()
@@ -28,6 +32,11 @@ struct UserInfoDetail: View {
                     Text(userInfo.userName)
                 }
             }
+            Button(action: {
+                
+            }, label: {
+                Text("Change your profile photo")
+            })
         }
         .navigationBarTitle(Text("Personal Infomation"), displayMode: .inline)
         .padding()
