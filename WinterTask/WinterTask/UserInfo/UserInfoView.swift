@@ -14,12 +14,23 @@ struct UserInfoView: View {
             List {
                 Section {
                     HStack {
-                        Image("GirlInside")
-                            .resizable()
-                            .frame(width: 76, height: 80, alignment: .center)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                            .shadow(radius: 5)
+                        if userInfo.userPhoto != nil {
+                            Image(uiImage: userInfo.userPhoto!)
+                                .resizable()
+                                .frame(width: 76, height: 80, alignment: .center)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                                .shadow(radius: 5)
+                        }
+                        else {
+                            Image("GirlInside")
+                                .resizable()
+                                .frame(width: 76, height: 80, alignment: .center)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                                .shadow(radius: 5)
+                        }
+                        
                         Divider()
                         Text(usr.userName)
                             .font(.title)

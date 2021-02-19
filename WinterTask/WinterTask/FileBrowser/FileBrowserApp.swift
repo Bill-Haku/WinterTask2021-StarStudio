@@ -153,6 +153,15 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 }
 
 // MARK: - Add an alert with TextField
+public struct TextAlert {
+    public var title: String
+    public var value: String = ""
+    public var placeholder: String = ""
+    public var accept: String = "OK"
+    public var cancel: String = "Cancel"
+    public var action: (String?) -> ()
+}
+
 extension UIAlertController {
     convenience init(alert: TextAlert) {
         self.init(title: alert.title, message: nil, preferredStyle: .alert)
@@ -202,15 +211,6 @@ struct AlertWrapper<Content: View>: UIViewControllerRepresentable {
             uiViewController.dismiss(animated: true)
         }
     }
-}
-
-public struct TextAlert {
-    public var title: String
-    public var value: String = ""
-    public var placeholder: String = ""
-    public var accept: String = "OK"
-    public var cancel: String = "Cancel"
-    public var action: (String?) -> ()
 }
 
 extension View {

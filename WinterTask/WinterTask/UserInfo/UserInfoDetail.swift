@@ -20,7 +20,7 @@ struct UserInfoDetail: View {
                     .font(.title2)
                 Spacer()
                 if selectedImage != nil {
-                    Image(uiImage: selectedImage!)
+                    Image(uiImage: userInfo.userPhoto!)
                         .resizable()
                         .frame(width: 76, height: 80, alignment: .center)
                         .clipShape(Circle())
@@ -43,12 +43,20 @@ struct UserInfoDetail: View {
                     Text(userInfo.userName)
                 }
             }
-            Button(action: {
-                self.sourceType = .photoLibrary
-                self.isImagePickerDisplay.toggle()
-            }, label: {
-                Text("Change your profile photo from photo library")
-            })
+            Menu("Change your profile photo") {
+                Button {
+                    self.sourceType = .photoLibrary
+                    self.isImagePickerDisplay.toggle()
+                } label: {
+                    Text("Choose from photo library")
+                }
+                Button {
+                    self.sourceType = .camera
+                    self.isImagePickerDisplay.toggle()
+                } label: {
+                    Text("Choose from camera")
+                }
+            }
         }
         .navigationBarTitle(Text("Personal Infomation"), displayMode: .inline)
         .padding()
