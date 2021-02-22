@@ -21,6 +21,20 @@ func cleanCache() {
 
 @main
 struct WinterTaskApp: App {
+    init() {
+        refreshFileList()
+        manager = LocationManager.shared
+        if manager.hasLocationPermission() {
+            manager.requestLocation()
+            manager.getLocationHandle = { (success,latitude, longitude) in
+                curLatitude = latitude
+                curLongitude = longitude
+            }
+        } else {
+            manager.requestLocationAuthorizaiton()
+
+        }
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

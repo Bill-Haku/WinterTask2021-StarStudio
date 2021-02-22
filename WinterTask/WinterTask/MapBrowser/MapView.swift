@@ -12,7 +12,7 @@ struct MapView: View {
     @State var latitudeStr: String = "30.67"
     @State var longtiudeStr: String = "104.07"
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 30.67, longitude: 104.07),
+        center: CLLocationCoordinate2D(latitude: curLatitude, longitude: curLongitude),
         span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
     )
     var body: some View {
@@ -29,7 +29,14 @@ struct MapView: View {
                                 .frame(width: 25, height: 25, alignment: .center)
                         })
                         Divider()
-                        Button(action: {}, label: {
+                        Button(action: {
+                            region.center.latitude = curLatitude
+                            region.center.longitude = curLongitude
+                            if region.span.latitudeDelta > 0.5 {
+                                region.span.latitudeDelta = 0.2
+                                region.span.longitudeDelta = 0.2
+                            }
+                        }, label: {
                             Image(systemName: "paperplane")
                                 .resizable()
                                 .frame(width: 25, height: 25, alignment: .center)

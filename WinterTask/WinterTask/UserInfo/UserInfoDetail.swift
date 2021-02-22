@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserInfoDetail: View {
-    @ObservedObject var userNameIn = userInfo
+    @ObservedObject var usr = userInfo
     @State private var isImagePickerDisplay = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
@@ -20,7 +20,7 @@ struct UserInfoDetail: View {
                     .font(.title2)
                 Spacer()
                 if selectedImage != nil {
-                    Image(uiImage: userInfo.userPhoto!)
+                    Image(uiImage: usr.userPhoto!)
                         .resizable()
                         .frame(width: 76, height: 80, alignment: .center)
                         .clipShape(Circle())
@@ -40,13 +40,19 @@ struct UserInfoDetail: View {
                 HStack {
                     Text("Name")
                     Spacer()
-                    Text(userInfo.userName)
+                    Text(usr.userName)
                 }
             }
             Menu("Change your profile photo") {
                 Button {
                     self.sourceType = .photoLibrary
                     self.isImagePickerDisplay.toggle()
+                    usr.userPhoto = self.selectedImage
+                    if self.selectedImage != nil {
+                        print("OK")
+                    } else {
+                        print("NOT OK")
+                    }
                 } label: {
                     Text("Choose from photo library")
                 }

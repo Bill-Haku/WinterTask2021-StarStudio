@@ -14,8 +14,8 @@ struct UserInfoView: View {
             List {
                 Section {
                     HStack {
-                        if userInfo.userPhoto != nil {
-                            Image(uiImage: userInfo.userPhoto!)
+                        if usr.userPhoto != nil {
+                            Image(uiImage: usr.userPhoto!)
                                 .resizable()
                                 .frame(width: 76, height: 80, alignment: .center)
                                 .clipShape(Circle())
