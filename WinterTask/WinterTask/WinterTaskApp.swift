@@ -10,7 +10,7 @@ import Foundation
 
 class user: ObservableObject {
     @Published var userName = "User Name"
-    @Published var userPhoto: UIImage? = nil
+    @Published var userPhoto: Image? = nil
 }
 
 var userInfo = user()

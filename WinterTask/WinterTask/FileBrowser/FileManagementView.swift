@@ -67,8 +67,8 @@ struct FileManagementView: View {
                     }
                 }
                 .onDelete(perform: deleteRaw)
-                .navigationBarTitle(Text("Files"), displayMode: .inline)
             }
+            .navigationBarTitle(Text("Files"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 self.showAlert.toggle()
             }, label: {

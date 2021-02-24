@@ -9,9 +9,9 @@ import SwiftUI
 
 struct UserInfoDetail: View {
     @ObservedObject var usr = userInfo
-    @State private var isImagePickerDisplay = false
+    @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @State private var selectedImage: UIImage?
+    @State private var image: Image? = nil
     
     var body: some View {
         List {
@@ -19,8 +19,8 @@ struct UserInfoDetail: View {
                 Text("Profile Photo")
                     .font(.title2)
                 Spacer()
-                if selectedImage != nil {
-                    Image(uiImage: usr.userPhoto!)
+                if image != nil {
+                    image?
                         .resizable()
                         .frame(width: 76, height: 80, alignment: .center)
                         .clipShape(Circle())
@@ -46,19 +46,13 @@ struct UserInfoDetail: View {
             Menu("Change your profile photo") {
                 Button {
                     self.sourceType = .photoLibrary
-                    self.isImagePickerDisplay.toggle()
-                    usr.userPhoto = self.selectedImage
-                    if self.selectedImage != nil {
-                        print("OK")
-                    } else {
-                        print("NOT OK")
-                    }
+                    self.showImagePicker.toggle()
                 } label: {
                     Text("Choose from photo library")
                 }
                 Button {
                     self.sourceType = .camera
-                    self.isImagePickerDisplay.toggle()
+                    self.showImagePicker.toggle()
                 } label: {
                     Text("Choose from camera")
                 }
@@ -66,8 +60,11 @@ struct UserInfoDetail: View {
         }
         .navigationBarTitle(Text("Personal Infomation"), displayMode: .inline)
         .padding()
-        .sheet(isPresented: self.$isImagePickerDisplay) {
-            ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(sourceType: self.sourceType) {image in
+                self.image = Image(uiImage: image)
+                usr.userPhoto = Image(uiImage: image)
+            }
         }
     }
 }
@@ -78,36 +75,47 @@ struct UserInfoDetail_Previews: PreviewProvider {
     }
 }
 
-//MARK: - UIImagePicker
-struct ImagePickerView: UIViewControllerRepresentable {
-    @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
-    var sourceType: UIImagePickerController.SourceType
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode)
+    private var presentationMode
     
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = self.sourceType
-        return imagePicker
-    }
+    let sourceType: UIImagePickerController.SourceType
+    let onImagePicked: (UIImage) -> Void
     
-    class Coordinator: NSObject,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
-        var picker: ImagePickerView
-        
-        init(picker: ImagePickerView) {
-            self.picker = picker
+    final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        @Binding
+        private var presentationMode: PresentationMode
+        private let sourceType: UIImagePickerController.SourceType
+        private let onImagePicked: (UIImage) -> Void
+        init(presentationMode: Binding<PresentationMode>, sourceType: UIImagePickerController.SourceType, onImagePicked: @escaping(UIImage) -> Void) {
+            _presentationMode = presentationMode
+            self.sourceType = sourceType
+            self.onImagePicked = onImagePicked
         }
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            guard let selectedImage = info[.originalImage] as? UIImage else { return }
-            self.picker.selectedImage = selectedImage
-            self.picker.isPresented.wrappedValue.dismiss()
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            onImagePicked(uiImage)
+            presentationMode.dismiss()
         }
-    }
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
         
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            presentationMode.dismiss()
+        }
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(picker: self)
+        return Coordinator(presentationMode: presentationMode, sourceType: sourceType, onImagePicked: onImagePicked)
+    }
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.sourceType = sourceType
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+        
     }
 }

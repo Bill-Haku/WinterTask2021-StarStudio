@@ -15,7 +15,7 @@ struct UserInfoView: View {
                 Section {
                     HStack {
                         if usr.userPhoto != nil {
-                            Image(uiImage: usr.userPhoto!)
+                            usr.userPhoto?
                                 .resizable()
                                 .frame(width: 76, height: 80, alignment: .center)
                                 .clipShape(Circle())
@@ -30,7 +30,6 @@ struct UserInfoView: View {
                                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                 .shadow(radius: 5)
                         }
-                        
                         Divider()
                         Text(usr.userName)
                             .font(.title)

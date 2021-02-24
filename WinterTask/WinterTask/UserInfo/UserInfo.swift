@@ -9,7 +9,7 @@ import Foundation
 
 struct defaultsKeys {
     static let key1 = "name"
-    static let key2 = "key2"
+    static let key2 = "photo"
     static let key3 = "key3"
 }
 
