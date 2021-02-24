@@ -23,11 +23,24 @@ struct MapView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Button(action: {}, label: {
+                        /*Button(action: {
+                            let msg = String.init(format: "coordinate =  {%f, %f}", region.center.latitude, region.center.longitude)
+                            let alert = UIAlertView.init(title: "", message: msg, delegate: nil, cancelButtonTitle: "Ok", otherButtonTitles:"Cancel")
+                            alert.show()
+                        }, label: {
                             Image(systemName: "info.circle")
                                 .resizable()
                                 .frame(width: 25, height: 25, alignment: .center)
-                        })
+                        })*/
+                        Menu{
+                            Text("\(region.center.latitude)")
+                            Text("\(region.center.longitude)")
+                        }
+                        label: {
+                            Image(systemName: "info.circle")
+                                .resizable()
+                                .frame(width: 25, height: 25, alignment: .center)
+                        }
                         Divider()
                         Button(action: {
                             region.center.latitude = curLatitude
@@ -46,7 +59,6 @@ struct MapView: View {
                     .frame(width: 50, height: 90)
                     .background(Color(.white))
                 }
-
                 Spacer()
                 HStack{
                     VStack {
@@ -76,8 +88,6 @@ struct MapView: View {
                 .colorMultiply(.white)
                 .edgesIgnoringSafeArea(.all)
             }
-
-
         }
  
     }

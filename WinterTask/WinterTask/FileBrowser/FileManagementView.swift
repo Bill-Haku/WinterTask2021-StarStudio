@@ -67,17 +67,15 @@ struct FileManagementView: View {
                     }
                 }
                 .onDelete(perform: deleteRaw)
-                
                 .navigationBarTitle(Text("Files"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    withAnimation {
-                        self.showAlert.toggle()
-                    }
-                }, label: {
-                    Image(systemName: "folder.badge.plus")
-                }))
             }
+            .navigationBarItems(trailing: Button(action: {
+                self.showAlert.toggle()
+            }, label: {
+                Image(systemName: "folder.badge.plus")
+            }))
         }
+        .edgesIgnoringSafeArea(.all)
         .addRefreshHeader(isRefreshing: $modelObject.isRefreshing)
         .alert(isPresented: $showAlert, TextAlert(title: "Add New Folder", placeholder: "New folder", action: {
             if let name = $0 {
@@ -158,7 +156,6 @@ struct PullRefresh: UIViewRepresentable {
         func clearObserver() {
             stateToken?.invalidate()
         }
-        
         func scrollViewDidEndDragging(_ scrollView: UIScrollView) {
             if isRefreshing.wrappedValue {
                 return
@@ -171,7 +168,6 @@ struct PullRefresh: UIViewRepresentable {
                 actionMethod()
             }
         }
-        
     }
     
     private func scrollView(root: UIView) -> UIScrollView? {

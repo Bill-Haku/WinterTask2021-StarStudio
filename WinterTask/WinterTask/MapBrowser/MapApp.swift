@@ -9,6 +9,10 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
+var manager: LocationManager!
+var curLatitude: CLLocationDegrees = 0
+var curLongitude: CLLocationDegrees = 0
+
 class LocationManager: NSObject {
     static let shared = LocationManager()
     var getLocationHandle: ((_ success: Bool, _ latitude: Double, _ longitude: Double) -> Void)?
@@ -94,11 +98,9 @@ extension LocationManager: CLLocationManagerDelegate {
         print("get location failed. error:\(error.localizedDescription)")
     }
 }
-//TEST
-var manager: LocationManager!
-var curLatitude: CLLocationDegrees = 0
-var curLongitude: CLLocationDegrees = 0
 
+
+//TEST
 /*@IBAction func testLocation(_ sender: Any) {
     if CLLocationManager.locationServicesEnabled() {
         print("设备有定位服务")
