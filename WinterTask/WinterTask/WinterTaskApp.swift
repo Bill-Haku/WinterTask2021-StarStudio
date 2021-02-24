@@ -32,7 +32,9 @@ struct WinterTaskApp: App {
             }
         } else {
             manager.requestLocationAuthorizaiton()
-
+        }
+        if let readName = defaults.string(forKey: defaultsKeys.key1) {
+            userInfo.userName = readName
         }
     }
     var body: some Scene {

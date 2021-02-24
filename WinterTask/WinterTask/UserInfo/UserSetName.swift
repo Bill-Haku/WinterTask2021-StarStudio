@@ -19,6 +19,7 @@ struct UserSetName: View {
         }
         .navigationBarTitle(Text("Set new name"))
         .navigationBarItems(trailing: Button(action: {
+            defaults.setValue(userNameIn.userName, forKey: defaultsKeys.key1)
             userInfo.$userName = userNameIn.$userName
         }, label: {
             Text("Save")

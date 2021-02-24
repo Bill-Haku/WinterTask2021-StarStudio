@@ -37,6 +37,7 @@
 		BF8C278325CAF85D004C45B3 /* FileImageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C278225CAF85D004C45B3 /* FileImageReader.swift */; };
 		BF8C279425CBD767004C45B3 /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C279325CBD767004C45B3 /* PDFReader.swift */; };
 		BF938EEF25DF5F5600116FB8 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = BF938EEE25DF5F5600116FB8 /* folder.png */; };
+		BF938EFD25E604F700116FB8 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF938EFC25E604F700116FB8 /* UserInfo.swift */; };
 		BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */; };
 		BFF6DC4E25BC320600D20557 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DC4D25BC320600D20557 /* ContentView.swift */; };
 		BFF6DC5025BC320900D20557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF6DC4F25BC320900D20557 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		BF8C278225CAF85D004C45B3 /* FileImageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImageReader.swift; sourceTree = "<group>"; };
 		BF8C279325CBD767004C45B3 /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
 		BF938EEE25DF5F5600116FB8 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		BF938EFC25E604F700116FB8 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		BFF6DC4825BC320600D20557 /* WinterTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinterTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DC4B25BC320600D20557 /* WinterTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterTaskApp.swift; sourceTree = "<group>"; };
 		BFF6DC4D25BC320600D20557 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		BF65B3C325BE93A600D83FC7 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				BF938EFC25E604F700116FB8 /* UserInfo.swift */,
 				BFF6DC8325BC327600D20557 /* UserInfoView.swift */,
 				BF00C44225C41A4100AABB6D /* UserInfoDetail.swift */,
 				BF00C48D25CA4EE900AABB6D /* UserSetName.swift */,
@@ -440,6 +443,7 @@
 				BF00C48E25CA4EEA00AABB6D /* UserSetName.swift in Sources */,
 				BFF6DC7A25BC325B00D20557 /* FileManagementView.swift in Sources */,
 				BFF6DC4C25BC320600D20557 /* WinterTaskApp.swift in Sources */,
+				BF938EFD25E604F700116FB8 /* UserInfo.swift in Sources */,
 				BFF6DC8425BC327600D20557 /* UserInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
