@@ -64,6 +64,8 @@ struct UserInfoDetail: View {
             ImagePicker(sourceType: self.sourceType) {image in
                 self.image = Image(uiImage: image)
                 usr.userPhoto = Image(uiImage: image)
+                saveImageToDocumentDirectory(image)
+                saveImageToCacheDirectory(image)
             }
         }
     }

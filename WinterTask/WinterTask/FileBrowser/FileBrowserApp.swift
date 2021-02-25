@@ -218,3 +218,57 @@ extension View {
         AlertWrapper(isPresented: isPresented, alert: alert, content: self)
     }
 }
+
+//MARK: - Save UIImage to files
+
+func saveImageToDocumentDirectory(_ chosenImage: UIImage) -> String {
+    let directoryPath =  NSHomeDirectory().appending("/Documents/UserFiles/")
+    if !FileManager.default.fileExists(atPath: directoryPath) {
+        do {
+            try FileManager.default.createDirectory(at: NSURL.fileURL(withPath: directoryPath), withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print(error)
+        }
+    }
+    let filename = "Head.jpg"
+    let filepath = directoryPath.appending(filename)
+    let url = NSURL.fileURL(withPath: filepath)
+    do {
+        try chosenImage.jpegData(compressionQuality: 1.0)?.write(to: url, options: .atomic)
+        return String.init("/Documents/\(filename)")
+    } catch {
+        print(error)
+        print("file cant not be save at path \(filepath), with error : \(error)");
+        return filepath
+    }
+}
+
+func saveImageToCacheDirectory(_ chosenImage: UIImage) -> String {
+    let directoryPath =  NSHomeDirectory().appending("/Documents/Caches/")
+    if !FileManager.default.fileExists(atPath: directoryPath) {
+        do {
+            try FileManager.default.createDirectory(at: NSURL.fileURL(withPath: directoryPath), withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print(error)
+        }
+    }
+    let filename = "\(date2String(Date())).jpg"
+    let filepath = directoryPath.appending(filename)
+    let url = NSURL.fileURL(withPath: filepath)
+    do {
+        try chosenImage.jpegData(compressionQuality: 1.0)?.write(to: url, options: .atomic)
+        return String.init("/Documents/\(filename)")
+    } catch {
+        print(error)
+        print("file cant not be save at path \(filepath), with error : \(error)");
+        return filepath
+    }
+}
+
+func date2String(_ date:Date, dateFormat:String = "yyyy-MM-dd HH:mm:ss") -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.init(identifier: "en_US")
+    formatter.dateFormat = dateFormat
+    let date = formatter.string(from: date)
+    return date
+}

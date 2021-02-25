@@ -33,7 +33,7 @@ struct FileManagementView: View {
     @ObservedObject var modelObject = ModelObject()
     @State var showAlert = false
     @State var folderNameIn = ""
-    let fileManager = FileManager.default
+    var fileManager = FileManager.default
     
     var body: some View {
         func deleteRaw(at offsets: IndexSet) {
@@ -47,7 +47,13 @@ struct FileManagementView: View {
         return NavigationView {
             List {
                 ForEach(fileListArray.indices, id: \.self) { index in
-                    if fileListArray[index].fileType == 1 {
+                    if fileListArray[index].fileType == 0 {
+                        NavigationLink(destination: FileManagementView()) {
+                            FileListView(file: fileListArray[index], id: index)
+                                .frame(height: 80)
+                        }
+                    }
+                    else if fileListArray[index].fileType == 1 {
                         NavigationLink(
                             destination: FileImageReader(file: fileListArray[index])) {
                             FileListView(file: fileListArray[index], id: index)
@@ -82,6 +88,7 @@ struct FileManagementView: View {
                 self.folderNameIn = name
                 if createNewFolder(folderName: folderNameIn) {
                     print("create folder \(name) success")
+                    refreshFileList()
                 }
                 else {
                     print("create folder \(name) fail")
